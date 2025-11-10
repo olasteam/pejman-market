@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  مدیریت بدهی سوپرمارکت پژمان </title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>  مدیریت بدهی سوپرمارکت پژمان </h1>
+
+        <div id="loginSection">
+            <input type="password" id="adminPass" placeholder="رمز ورود">
+            <button onclick="login()">ورود</button>
+        </div>
+
+        <div id="formsSection" style="display:none;">
+            <h2>ثبت خرید</h2>
+            <input type="text" id="itemTitle" placeholder="عنوان">
+            <input type="number" id="itemAmount" placeholder="مبلغ">
+            <input type="text" id="itemDate" class="datepicker" placeholder="تاریخ">
+
+            <button onclick="addPurchase()">ثبت خرید</button>
+
+            <h2>ثبت واریز</h2>
+            <input type="number" id="depositAmount" placeholder="مبلغ واریز">
+            <input type="text" id="depositDate" class="datepicker" placeholder="تاریخ">
+
+            <button onclick="addDeposit()">ثبت واریز</button>
+        </div>
+
+        <h2>لیست تراکنش‌ها</h2>
+        <table id="transactionsTable">
+            <thead>
+                <tr>
+                    <th>نوع</th>
+                    <th>عنوان</th>
+                    <th>مبلغ</th>
+                    <th>تاریخ</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <h2 id="totalDebt">بدهی فعلی: 0 تومان</h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
