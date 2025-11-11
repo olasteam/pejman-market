@@ -11,6 +11,7 @@
     <h2 class="title">گزارش خرید و واریزی سوپرمارکت</h2>
 
     <div class="cards">
+
         <div class="card">
             <p>تعداد خریدها</p>
             <h3 id="buyCount">0</h3>
@@ -30,7 +31,18 @@
             <p>بدهی نهایی</p>
             <h3 id="finalDebt">0</h3>
         </div>
-       
+
+        <!-- کارت‌های فیلتر -->
+        <div class="filter-cards">
+            <div class="filter-card" onclick="filterTable('واریز')">
+                واریزی‌ها
+            </div>
+
+            <div class="filter-card" onclick="filterTable('خرید')">
+                خریدها
+            </div>
+        </div>
+
     </div>
 
     <div class="table-container">
