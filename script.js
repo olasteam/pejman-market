@@ -1,6 +1,8 @@
 const SHEET_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjxUt1aRrxd5_0mcM0ou4w52i5wP_DLLs2GCE-DOz9h1xrniUrucfhJbOkJ0W_bf82nPkEiKWfrHNe/pub?output=csv";
 
+let allData = []; 
+
 async function fetchData() {
     try {
         const response = await fetch(SHEET_URL);
@@ -8,13 +10,16 @@ async function fetchData() {
 
         const rows = csvText.trim().split("\n").map(r => r.split(","));
 
-        const headers = rows.shift();
+        rows.shift(); 
+
         const data = rows.map(r => ({
             نوع: r[0],
             عنوان: r[1],
             مبلغ: Number(r[2]),
             تاریخ: r[3]
         }));
+
+        allData = data; 
 
         renderTable(data);
         calculateSummary(data);
@@ -50,7 +55,8 @@ function calculateSummary(data) {
         if (item.نوع.trim() === "خرید") {
             buyCount++;
             totalBills += item.مبلغ;
-        } else if (item.نوع.trim() === "واریز") {
+        } 
+        else if (item.نوع.trim() === "واریز") {
             payCount++;
             totalPays += item.مبلغ;
         }
@@ -60,6 +66,14 @@ function calculateSummary(data) {
     document.getElementById("payCount").textContent = payCount;
     document.getElementById("totalPays").textContent = totalPays.toLocaleString();
     document.getElementById("finalDebt").textContent = (totalBills - totalPays).toLocaleString();
+}
+
+function filterTable(type) {
+    if (!allData.length) return;
+
+    const filtered = allData.filter(item => item.نوع.trim() === type);
+
+    renderTable(filtered);
 }
 
 fetchData();
